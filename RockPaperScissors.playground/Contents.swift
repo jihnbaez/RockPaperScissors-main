@@ -22,7 +22,14 @@ Rock, paper, scissors is a classic two player hand game dating back to ancient C
  * If userInput is "rock" OR userInputis "paper" OR userInput is "scissors", return userInput.
  * Otherwise, return the message, "You can only enter rock, paper, or scissors. Try again."
  */
-func getUserInput(userInput )
+func getUserInput(userInput: String)-> String{
+    if(userInput == "rock") || (userInput == "paper") || (userInput == "scissors"){
+        return userInput
+    }
+    else {
+        return "You can only enter rock, paper, and scissors"
+    }
+}
 
 
 
@@ -31,7 +38,7 @@ func getUserInput(userInput )
  Call the function, ***getUserChoice(userInput:)***, and pass in an argument for userInput. Wrap the function in a print() statement.
 
  */
-
+print(getUserInput(userInput: "no"))
 /*:
  
  ### Computer Choice
@@ -50,7 +57,20 @@ func getUserInput(userInput )
  * 2 should return "scissors"
  Conclude the switch statement with a default that returns the String, "Something went wrong".
 */
- 
+func getComputerChoice () -> String{
+    let randomNumber = Int.random(in: 0...2)
+    switch randomNumber{
+    case 0:
+        return "rock"
+    case 1:
+        return "paper"
+    case 2:
+        return "scissors"
+    default:
+        return "something went wrong"
+    
+    }
+}
 
 
 /*:
@@ -83,7 +103,36 @@ func getUserInput(userInput )
  Below the final case, add a defaultstatement that prints, "Something went wrong".
  Conclude the function with a statement that returns decision.
  */
-
+func determineWinner (_ userChoice: String, _ compChoice: String) -> String{
+    var decision = "its a tie"
+    switch userChoice {
+    case "rock":
+        if compChoice == "paper"{
+            decision = "The computer won"
+        }
+        else if compChoice == "scissors"{
+            decision = "The user won"
+        }
+        
+    case "paper":
+        if compChoice == "rock"{
+            decision = "The User won"
+        }
+        else if compChoice == "scissors"{
+            decision = "The computer won"
+        }
+    case "scissors":
+        if compChoice == "rock"{
+            decision = "The computer won"
+        }
+        else if compChoice == "paper"{
+            decision = "The User won"
+        }
+    default:
+        print("something went wrong")
+    }
+    return decision
+}
 
 
 /*: Add three consecutive print()statements to display the user’s choice, the computer’s choice, and the winner:
@@ -92,7 +141,9 @@ Use string interpolation in the second print() statement to output: "The compute
 Call the determineWinner() function and pass in the variables, userChoiceand compChoice, as arguments.
 
 */
-
+print("You threw \(getUserInput(userInput: "rock"))")
+print("The computer threw \(getComputerChoice())")
+print(determineWinner("rock", getComputerChoice()))
 
 /*:
 Excellent work! 👏 You’ve utilized your knowledge of functions and previous fundamental Swift concepts to create a rock, paper, scissors game.
